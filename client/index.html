@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alt Rails Todo</title>
+    <!-- <link rel="stylesheet" type="text/css" href="index.css" /> -->
+  </head>
+
+  <body>
+    <h2>Hello!</h2>
+    <form id="form">
+      <!-- <div class="form-item">
+        <label for="todo">Enter your todo: </label>
+        <input type="text" name="todo" id="todo" />
+      </div> -->
+      <div class="form-button">
+        <!-- type="submit" にすると http リクエストが走るので type="button" にしている -->
+        <input type="button" value="Submit!" onclick="handleSubmit()" />
+      </div>
+    </form>
+
+    <pre id="api-call-result"></pre>
+    <script>
+      const handleSubmit = async () => {
+        console.log("Hello");
+        const res = await fetch("/todos", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json;",
+          },
+        });
+        const responseData = await res.json();
+        const displayedElement = document.getElementById("api-call-result");
+        displayedElement.innerText = JSON.stringify(responseData);
+      };
+    </script>
+  </body>
+</html>

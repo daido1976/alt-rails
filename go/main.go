@@ -15,8 +15,9 @@ func main() {
 	server := http.Server{
 		Addr: ":8080",
 	}
+	http.Handle("/", http.FileServer(http.Dir("./client")))
 	http.HandleFunc("/todos", handleTodos)
-	log.Printf("start server localhost%s \n", server.Addr)
+	log.Printf("start server http://localhost%s \n", server.Addr)
 	server.ListenAndServe()
 }
 
